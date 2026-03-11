@@ -1,0 +1,19 @@
+package Trainer3;
+
+public class E3 {
+
+    public static void main(String[] args) {
+
+        String correctUsername = "admin";
+        String correctPassword = "12345";
+
+        LoginValidator validate =
+                (username, password) -> {
+                    return username.equals(correctUsername) &&
+                           password.equals(correctPassword);
+                };
+
+        System.out.println(validate.validate("admin", "12345"));
+        System.out.println(validate.validate("admin", "11111"));
+    }
+}
