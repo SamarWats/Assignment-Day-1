@@ -1,0 +1,12 @@
+# Build folders
+bin/
+target/
+
+# Eclipse / STS files
+.settings/
+.project
+.classpath
+
+# OS files
+.DS_Store
+Thumbs.db

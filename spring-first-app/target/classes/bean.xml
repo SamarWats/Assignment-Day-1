@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:context="http://www.springframework.org/schema/context"
+ xsi:schemaLocation="
+ http://www.springframework.org/schema/beans
+ https://www.springframework.org/schema/beans/spring-beans.xsd
+ http://www.springframework.org/schema/context
+ https://www.springframework.org/schema/context/spring-context.xsd">
+
+
+<context:annotation-config/>
+
+	<!--<bean id="hello" class="com.cg.bean.HelloWorld" scope="prototype"/>-->
+    <!--<bean id="hello" class="com.cg.bean.HelloWorld" scope="singleton">
+
+        <property name="name" value="Samar"/>
+
+        <property name="languages">
+            <set>
+                <value>Hindi</value>
+                <value>English</value>
+                <value>Sanskrit</value>
+            </set>
+			<list>
+                <value>Hindi</value>
+                <value>English</value>
+                <value>Sanskrit</value>
+            </list>-->
+        <!--</property>
+
+    </bean>-->
+    
+
+    	<!--<property name='empid' value='101'/>
+        <property name='name' value='Samar'/>
+        <property name = 'address' ref='add'/>
+    </bean>-->
+    
+    <!--<bean id='add' class = 'com.cg.bean.Address'>
+    	<property name='city' value='Noida'/>
+        <property name='country' value='India'/>
+        <property name='zip' value='201307'/>
+    </bean>
+    
+    <bean id='address' class = 'com.cg.bean.Address'>
+    	<property name='city' value='Bareilly'/>
+        <property name='country' value='India'/>
+        <property name='zip' value='243001'/>
+    </bean>-->
+    
+<context:component-scan base-package="com.cg.bean"/>
+<context:property-placeholder location="classpath:data.properties"/>
+
+
+</beans>
