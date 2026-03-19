@@ -56,22 +56,20 @@ public class EmployeeService implements IEmployeeServices{
 	}
 
 	@Override
-	public Employee updateEmployee() {
-		Employee emp = null;
-		// TODO Auto-generated method stub
-		Employee existing = repo.findById(emp.getEmpid()).orElse(null);
+	public Employee updateEmployee(int empId, Employee emp) {
+
+	    Employee existing = repo.findById(empId).orElse(null);
 
 	    if (existing != null) {
 	        existing.setName(emp.getName());
 	        existing.setSalary(emp.getSalary());
 	        existing.setDob(emp.getDob());
 
-	        return repo.save(existing); // update
+	        return repo.save(existing); 
 	    }
 
 	    return null;
 	}
-	
 	
 	
 }

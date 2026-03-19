@@ -11,7 +11,7 @@ public interface IEmployeeServices {
 	public Employee createEmployee(Employee emp);
 	public Employee getEmployee(int empId);
 	public String removeEmployee(int empId);
-	public Employee updateEmployee();
+	public Employee updateEmployee(int empId, Employee emp);
 	public List<Employee> getEmployeeByName(String name);
 	
 }

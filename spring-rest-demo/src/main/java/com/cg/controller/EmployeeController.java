@@ -4,11 +4,14 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.cg.entity.Employee;
@@ -24,6 +27,7 @@ public class EmployeeController {
 		this.service=service;
 	}
 	
+	
 //	public Employee addEmp() {
 //	    Employee emp = new Employee();
 //	    emp.setName("Samar");
@@ -34,53 +38,101 @@ public class EmployeeController {
 //	}
 	
 	
-	@PostMapping("/employees")
-	public Employee addEmployee(@RequestBody Employee emp) {
-	    return service.createEmployee(emp);
-	}
+//	@PostMapping("/employees")
+//	public Employee addEmployee(@RequestBody Employee emp) {
+//	    return service.createEmployee(emp);
+//	}
+//
+//	@GetMapping("employees")
+//	public List<Employee> getXyz() {
+//		return service.getAllEmployee();
+//	}
+//	
+//	
+//	//two resouces can  not have same url
+//	@GetMapping("/employees/{eid}")
+//	public Employee getEmp1(@PathVariable int eid) {
+//	    return service.getEmployee(eid);
+//	}
+//
+//	@GetMapping("/employees/name/{name}")
+//	public List<Employee> getEmpByName1(@PathVariable String name) {
+//	    return service.getEmployeeByName(name);
+//	}
+//	
+//	@DeleteMapping("/{eid}")
+//	public String removeEmployee(@PathVariable int eid) {
+//	    return service.removeEmployee(eid);
+//	}
+//	
+//	@PutMapping("/{eid}")
+//	public Employee updateEmployee(@PathVariable int eid, @RequestBody Employee emp) {
+//	    return service.updateEmployee(eid, emp);
+//	}
+//	
+//	
+//	@GetMapping(produces = {"application/json", "application/xml"})
+//	public List<Employee> getAll() {
+//		return service.getAllEmployee();
+//	}
+//	
+//
+//	@GetMapping("/name/(name}")
+//	public List<Employee> getEmpByName(@PathVariable String name) {
+//		return service.getEmployeeByName(name);
+//	}
+//
+//
+//
+//	@PostMapping(consumes = {"application/json", "application/xml"}) 
+//	public Employee createNewEmployee (@RequestBody Employee emp) {
+//		return service.createEmployee(emp);
+//	}
+		
+	// CREATE
+    @PostMapping
+    public Employee addEmployee(@RequestBody Employee emp) {
+        return service.createEmployee(emp);
+    }
 
-	@GetMapping("employees")
-	public List<Employee> getXyz() {
-		return service.getAllEmployee();
-	}
-	
-	
-	//two resouces can  not have same url
-	@GetMapping("/employees/{eid}")
-	public Employee getEmp(@PathVariable int eid) {
-	    return service.getEmployee(eid);
-	}
+    // GET ALL
+    @GetMapping
+    public List<Employee> getAllEmployees() {
+        return service.getAllEmployee();
+    }
 
-	@GetMapping("/employees/name/{name}")
-	public List<Employee> getEmpByName(@PathVariable String name) {
-	    return service.getEmployeeByName(name);
-	}
-	
-	@Override
-	public Employee updateEmployee() {
-		Employee emp = null;
-		// TODO Auto-generated method stub
-		Employee existing = repo.findById(emp.getEmpid()).orElse(null);
+    // GET BY ID
+    @GetMapping("/{eid}")
+    public Employee getEmployee(@PathVariable int eid) {
+        return service.getEmployee(eid);
+    }
 
-	    if (existing != null) {
-	        existing.setName(emp.getName());
-	        existing.setSalary(emp.getSalary());
-	        existing.setDob(emp.getDob());
+    // GET BY NAME
+    @GetMapping("/name/{name}")
+    public List<Employee> getEmployeeByName(@PathVariable String name) {
+        return service.getEmployeeByName(name);
+    }
 
-	        return repo.save(existing); // update
-	    }
+    // UPDATE
+    @PutMapping("/{eid}")
+    public Employee updateEmployee(@PathVariable int eid, @RequestBody Employee emp) {
+        return service.updateEmployee(eid, emp);
+    }
 
-	    return null;
-	}
+    // DELETE
+    @DeleteMapping("/{eid}")
+    public String deleteEmployee(@PathVariable int eid) {
+        return service.removeEmployee(eid);
+    }
 	
-	@PutMapping()
-	public Employee updateEmployee() {
-		return service.updateEmployee();
-	}
-	
-	
-	
-	
-	
-	
+//    @GetMapping("/{eid}")
+//    public ResponseEntity<Employee> getEmp(@PathVariable int eid){
+//        Employee emp = service.getEmployee(eid);
+//
+//        if(emp != null) {
+//            return new ResponseEntity<>(emp, HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//    }
 }
